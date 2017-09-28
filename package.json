@@ -1,0 +1,40 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "tempate project description",
+  "main": "index.js",
+  "scripts": {
+    
+    "start": "npm-run-all --parallel dev:*",
+    "dev:setup": "mkdirp build/js build/css build/assets/img",
+    "dev:sass": "node-sass --watch src/scss --output-style expanded --source-map true src/scss/style.scss --output build/css",
+    "dev:babel": "babel src/js/**/*.js --watch --out-file build/js/script.js",
+    "dev:serve": "live-server dist --port=6262 --browser='Google Chrome'",
+    
+    "build": "npm-run-all prod:*",
+    "prod:setup": "mkdirp dist/js dist/css dist/assets/img",
+    "prod:sass": "node-sass --output-style compressed src/scss/style.scss --output dist/css",
+    "prod:babel": "babel build/script.js --out-file dist/js/script.js",
+    "prod:uglify-js": "uglifyjs dist/js/script.js --compress --mangle --output dist/js/script.js",
+    "prod:serve": "live-server dist --port=6262 --browser='Google Chrome'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "something.git"
+  },
+  "keywords": [
+    "template",
+    "project"
+  ],
+  "author": "Sergii Gatezh",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "live-server": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1",
+    "uglify-js": "^3.1.0"
+  }
+}
